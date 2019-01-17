@@ -15,17 +15,16 @@ Model<-model_summary(m21,bins=bins) <br>
 load("data_1.RData") <br>
 load("data_2.RData") <br>
 
-### #pass the model summary data frame and name of data frame containing variable values
+### #pass the model summary dataframe and the name of the dataframe containing variable values (data_1.RData)
 SQL<-sql_generation(Model,"data_1")
-### #SQL code creates a data frame from containing "data_1.RData" and the new estimates column
+### #SQL code creates a dataframe from containing "data_1.RData" and the new estimates column
 SQL_score<-sqldf(SQL) 
 
+### #can use to run tests and plot data
+require(ggplot) <br>
 R_score<-predict(m21,newdata=data_woe) <br>
 plot(R_score,SQL_score$out_sum,xlab="Score Using R",ylab="Score using SQL",main="Scoring test on Myrtle Beach outbound model"); lines(c(-11,11),c(-11,11),col="red",lwd=3) <br>
 
-### #new data frame
-SQL<-sql_generation(Model,"data_2") <br>
-data_table <- sqldf(SQL) <br>
 
 ## Example Output:
 
