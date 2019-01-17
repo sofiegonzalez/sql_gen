@@ -2,7 +2,7 @@
 Generates SQL code to parse a data set and sum estimates 
 Will provide mock data and model summary for testing
 
-Example Implementation:
+##Example Implementation:
 
 require(devtools)
 require(dplyr)
@@ -23,10 +23,11 @@ plot(R_score,SQL_score$out_sum,xlab="Score Using R",ylab="Score using SQL",main=
 SQL<-sql_generation(Model,"data_2")
 data_table <- sqldf(SQL) #new data frame
 
-Example Output:
+##Example Output:
 
 SELECT 
-     CASE WHEN var1 is NULL or  var1  in  ('', ' ') THEN 0 
+
+     CASE WHEN var1 is NULL or  var1  in  ('', ' ') THEN 0
          WHEN var1 = '< 0' THEN -0.926258504 
          WHEN var1 = '0 <= < 200' THEN -0.926258504 
          ELSE -0.926258504 END + 
